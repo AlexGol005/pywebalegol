@@ -3,7 +3,7 @@ from .models  import Note
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ('title', 'message', 'public', 'create_at', 'update_at')
+    list_display = ('id', 'title', 'message', 'public', 'create_at', 'update_at')
     fields = ('title', 'message', 'public', ('create_at', 'update_at'))
 
     readonly_fields = ('create_at', 'update_at')

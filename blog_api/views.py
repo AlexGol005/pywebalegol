@@ -1,7 +1,8 @@
-from rest_framework.response import Response
-from rest_framework.request import Request
 from rest_framework.views import APIView
+from rest_framework.request import Request
+from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 from blog.models import Note
 from . import serializers
@@ -22,3 +23,22 @@ class NoteListCreateApiView(APIView):
             serializers.note_created(note),
             status=status.HTTP_201_CREATED
         )
+
+class NoteDetailAPIView(APIView):
+    """ Представление, которое позволяет вывести отдельную запись. """
+    def get(self, request, pk):  # todo path param
+        # note = Note.objects.get(pk=pk)
+        note = get_object_or_404(Note, pk=pk)
+        return Response(serializers.note_to_json(note))
+
+    def put(self, request: Request, pk):
+        data = request.data
+        note = Note.objects.get(pk=pk)
+        note.title = data["title"]
+        note.message = data["message"]
+        note.save()
+        return Response(
+            serializers.note_created(note),
+            status=status.HTTP_200_OK
+        )
+
