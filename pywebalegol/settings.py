@@ -25,10 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'true'
 
+
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS').split(',')]
+
+
+# SECRET_KEY = "(d$$n4g3ipi+$$*(!h4zljt14hrr*=h5o^m(n88)s-l+e8ugxt"
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,7 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'common',
     'test_app',
-    'login'
+    'login',
+    'blog',
+    'rest_framework',
+    'blog_api'
 ]
 
 MIDDLEWARE = [
