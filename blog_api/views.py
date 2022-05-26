@@ -60,9 +60,17 @@ class NoteDetailAPIView(APIView):
             status=status.HTTP_200_OK
         )
 
+# class NotePublicNoteListAPIView(ListAPIView):
+#     queryset = Note.objects.all()
+#     serializer_class = serializers.NoteSerialiser
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#         return queryset.filter(public=True)
+
 class NotePublicNoteListAPIView(ListAPIView):
     queryset = Note.objects.all()
-    serializer_class = serializers.NoteSerialiser
+    serializer_class = serializers.AuthorNoteSerialiser
 
     def get_queryset(self):
         queryset = super().get_queryset()

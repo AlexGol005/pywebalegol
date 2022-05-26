@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models  import Note
+from .models  import Note, Comment
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
@@ -12,3 +12,9 @@ class NoteAdmin(admin.ModelAdmin):
     # Поиск по выбранным полям
     search_fields = ['title']
     list_filter = ['create_at', 'title']
+
+
+@admin.register(Comment)
+class NoteAdmin(admin.ModelAdmin):
+
+    fields = ('author', 'note', 'rating')
